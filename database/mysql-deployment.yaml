@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    name: mysql
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      name: mysql
+  template:
+    metadata:
+      labels:
+        name: mysql
+    spec:
+      containers: 
+        - image: mysql
+          name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_DATABASE
+              value: ghost
+            - name: MYSQL_USER
+              value: ghost
+            - name: MYSQL_PASSWORD
+              value: myp4ss
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-vol
+              mountPath: /var/lib/mysql
+          livenessProbe:
+            tcpSocket:
+              port: "mysql"
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          readinessProbe:
+            exec:
+              command: ["mysqladmin", "status", "-proot"]
+      volumes:
+        - name: mysql-vol
+          hostPath:
+            path: /var/lib/mysql
+      nodeName: smana-30sssw
