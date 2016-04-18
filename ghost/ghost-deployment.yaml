@@ -47,12 +47,7 @@ spec:
           volumeMounts:
             - name: "ghost"
               mountPath: "/etc/ghost"
-            - name: "ghost-tls"
-              mountPath: "/etc/ghost/ssl"
       volumes:
-        - name: "ghost-tls"
-          secret:
-            secretName: "ghost-tls"
         - name: "nginx-conf"
           configMap:
             name: "nginx-ghost"
