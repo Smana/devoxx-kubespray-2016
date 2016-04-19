@@ -16,6 +16,7 @@ spec:
     spec:
       containers: 
         - image: mysql
+          imagePullPolicy: "IfNotPresent"
           name: mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
@@ -38,10 +39,11 @@ spec:
             initialDelaySeconds: 5
             timeoutSeconds: 1
           readinessProbe:
+            initialDelaySeconds: 10
             exec:
               command: ["mysqladmin", "status", "-proot"]
       volumes:
         - name: mysql-vol
           hostPath:
             path: /var/lib/mysql
-      nodeName: smana-30sssw
+      nodeName: node1
