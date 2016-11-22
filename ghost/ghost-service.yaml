@@ -6,10 +6,9 @@ metadata:
   name: ghost
 spec:
   ports:
-  - nodePort: 32000
-    port: 80
+  - port: 80
     protocol: TCP
     targetPort: 80
   selector:
     app: ghost
-  type: NodePort
+  type: LoadBalancer

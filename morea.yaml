@@ -1,6 +1,6 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: devoxx
+  name: morea
   labels:
-    name: devoxx
+    name: morea

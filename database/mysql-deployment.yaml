@@ -46,4 +46,4 @@ spec:
         - name: mysql-vol
           hostPath:
             path: /var/lib/mysql
-      nodeName: node1
+      nodeName: nodeName # to be replaced by one of your nodes

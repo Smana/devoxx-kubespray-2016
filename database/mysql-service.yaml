@@ -5,9 +5,10 @@ metadata:
     name: mysql
   name: mysql
 spec: 
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 3306
-      nodePort: 31306
+      protocol: TCP
+      targetPort: 3306
   selector: 
     name: mysql

@@ -8,7 +8,7 @@ config = {
     database: {
       client: 'mysql',
       connection: {
-        host: '{{ MYSQL K8S SERVICE IP }}',
+        host: 'MYSQL_CLUSTER_IP',
         user: 'ghost',
         password: 'myp4ss',
         database: 'ghost',
