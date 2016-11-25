@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    name: mysql
+spec:
+  template:
+    metadata:
+      name: mysql
+      labels:
+        name: mysql
+    spec:
+      containers: 
+        - image: mysql:5.6
+          imagePullPolicy: "IfNotPresent"
+          name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_DATABASE
+              value: ghost
+            - name: MYSQL_USER
+              value: ghost
+            - name: MYSQL_PASSWORD
+              value: myp4ss
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+          livenessProbe:
+            tcpSocket:
+              port: "mysql"
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          readinessProbe:
+            initialDelaySeconds: 10
+            exec:
+              command: ["mysqladmin", "status", "-proot"]
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-persistent-disk
