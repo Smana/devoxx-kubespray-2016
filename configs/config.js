@@ -4,7 +4,7 @@ var config;
 
 config = {
   production: {
-    url: 'GHOST_LOADBALANCER_IP',
+    url: 'http://GHOST_LOADBALANCER_IP',
     database: {
       client: 'mysql',
       connection: {
