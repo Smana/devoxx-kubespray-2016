@@ -8,7 +8,7 @@ config = {
     database: {
       client: 'mysql',
       connection: {
-        host: 'MYSQL_CLUSTER_IP',
+        host: 'mysql.morea.svc.cluster.local',
         user: 'ghost',
         password: 'myp4ss',
         database: 'ghost',
